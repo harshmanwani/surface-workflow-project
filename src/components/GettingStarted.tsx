@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CollapsibleCard from "./CollapsibleCard";
 import EventTable from "./EventTable";
 
@@ -24,15 +24,22 @@ export default function GettingStarted() {
     { title: "Install the Surface Tag", completed: false, collapseButtonLabel: "Install tag" },
     { title: "Test Surface Tag Events", completed: false, collapseButtonLabel: "Test tag" }
   ]);
+  const [codeSnippet, setCodeSnippet] = useState(codeString);
 
   const updateStepCompletion = (index: number, completed: boolean) => {
     setSteps(steps.map((step, i) => i === index ? { ...step, completed } : step));
   };
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(codeString);
+    navigator.clipboard.writeText(codeSnippet);
     alert("Code snippet copied to clipboard!");
   };
+
+  useEffect(() => {
+    // const tagId = generateTagId();
+    const tagId = "SL-1234567890";
+    setCodeSnippet(codeString.replace('SURFACE_TAG_ID', tagId));
+  }, []);
 
   return (
     <div className="space-y-6">
@@ -50,7 +57,7 @@ export default function GettingStarted() {
             Copy Snippet
           </button>
           <pre className="whitespace-pre-wrap text-sm text-gray-800 font-mono">
-            <code>{codeString}</code>
+            <code>{codeSnippet}</code>
           </pre>
         </div>
         <p className="mt-4 text-sm text-green-600 font-medium">Connected successfully!</p>
