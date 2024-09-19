@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Event } from "@prisma/client";
 import ActionButton from "./ActionButton";
 
-export default function EventTable() {
+export default function EventTable({ updateStepCompletion }: { updateStepCompletion: (step: number, completed: boolean) => void }) {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -22,6 +22,9 @@ export default function EventTable() {
       setEvents(data.events);
       setTotalPages(data.totalPages);
       setCurrentPage(data.currentPage);
+      if (data.events.length > 0) {
+        updateStepCompletion(1, true);
+      }
     } catch (error) {
       console.error("Error fetching events:", error);
       setError("Failed to load events. Please try again.");

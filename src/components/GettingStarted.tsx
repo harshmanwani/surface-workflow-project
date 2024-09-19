@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import CollapsibleCard from "./CollapsibleCard";
 import EventTable from "./EventTable";
+import ActionButton from "./ActionButton";
+import Toast from "./Toast";
 
 const codeString = `<script>
 (function(w, d, s, l, i) {
@@ -25,6 +27,9 @@ export default function GettingStarted() {
     { title: "Test Surface Tag Events", completed: false, collapseButtonLabel: "Test tag" }
   ]);
   const [codeSnippet, setCodeSnippet] = useState(codeString);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastType, setToastType] = useState<"info" | "success" | "error">("info");
+  const [showToast, setShowToast] = useState(false);
 
   const updateStepCompletion = (index: number, completed: boolean) => {
     setSteps(steps.map((step, i) => i === index ? { ...step, completed } : step));
@@ -32,7 +37,30 @@ export default function GettingStarted() {
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(codeSnippet);
-    alert("Code snippet copied to clipboard!");
+    setToastMessage("Code snippet copied to clipboard!");
+    setToastType("success");
+    setShowToast(true);
+  };
+
+  const testConnection = async () => {
+    setToastMessage("Checking for Tag...");
+    setToastType("info");
+    setShowToast(true);
+
+    try {
+      const response = await fetch('/api/check-tag');
+      if (response.ok) {
+        setToastMessage("Connected successfully!");
+        setToastType("success");
+        updateStepCompletion(0, true);
+      } else {
+        throw new Error("Connection failed");
+      }
+    } catch (error) {
+      setToastMessage("We couldn't detect the Surface Tag on your website. Please ensure the snippet is added correctly.");
+      setToastType("error");
+    }
+    setShowToast(true);
   };
 
   useEffect(() => {
@@ -60,7 +88,14 @@ export default function GettingStarted() {
             <code>{codeSnippet}</code>
           </pre>
         </div>
-        <p className="mt-4 text-sm text-green-600 font-medium">Connected successfully!</p>
+        <Toast message={toastMessage} type={toastType} show={showToast} onClose={() => setShowToast(false)} />
+        <div className="mt-4 flex justify-end">
+          <ActionButton
+            actionText="Test connection"
+            actionVariant="secondary"
+            onClick={testConnection}
+          />
+        </div>
       </CollapsibleCard>
       <CollapsibleCard
         title={steps?.[1]?.title ?? ""}
@@ -68,7 +103,7 @@ export default function GettingStarted() {
         completed={steps?.[1]?.completed ?? false}
         collapseButtonLabel={steps?.[1]?.collapseButtonLabel ?? ""}
       >
-        <EventTable />
+        <EventTable updateStepCompletion={updateStepCompletion} />
       </CollapsibleCard>
     </div>
   );
