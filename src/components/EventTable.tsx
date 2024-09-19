@@ -1,7 +1,7 @@
 "use client"
 import React, { useState, useEffect } from "react";
 import { Event } from "@prisma/client";
-import ActionCard from "./ActionButton";
+import ActionButton from "./ActionButton";
 
 export default function EventTable() {
   const [events, setEvents] = useState<Event[]>([]);
@@ -94,7 +94,7 @@ export default function EventTable() {
         </button>
       </div>
       <div className="flex justify-end">
-        <ActionCard
+        <ActionButton
           actionText="Test Tag"
           actionVariant="secondary"
           onClick={() => fetchEvents(currentPage)}

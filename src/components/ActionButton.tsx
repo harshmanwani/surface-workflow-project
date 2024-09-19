@@ -1,14 +1,14 @@
-interface ActionCardProps {
+interface ActionButtonProps {
   actionText: string;
   actionVariant: "primary" | "secondary";
   onClick?: () => any;
 }
 
-export default function ActionCard({
+export default function ActionButton({
   actionText,
   actionVariant,
   onClick = () => null,
-}: ActionCardProps) {
+}: ActionButtonProps) {
   return (
     <button
       className={`rounded-md px-4 py-2 text-sm font-medium ${actionVariant === "primary"

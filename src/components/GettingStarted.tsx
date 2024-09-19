@@ -21,8 +21,8 @@ const codeString = `<script>
 
 export default function GettingStarted() {
   const [steps, setSteps] = useState([
-    { title: "Install the Surface Tag", completed: false },
-    { title: "Test Surface Tag Events", completed: false }
+    { title: "Install the Surface Tag", completed: false, collapseButtonLabel: "Install tag" },
+    { title: "Test Surface Tag Events", completed: false, collapseButtonLabel: "Test tag" }
   ]);
 
   const updateStepCompletion = (index: number, completed: boolean) => {
@@ -40,6 +40,7 @@ export default function GettingStarted() {
         title={steps?.[0]?.title ?? ""}
         description="Enable tracking and analytics."
         completed={steps?.[0]?.completed ?? false}
+        collapseButtonLabel={steps?.[0]?.collapseButtonLabel ?? ""}
       >
         <div className="relative bg-gray-50 p-4 rounded-md border border-gray-200">
           <button
@@ -58,6 +59,7 @@ export default function GettingStarted() {
         title={steps?.[1]?.title ?? ""}
         description="Test if the Surface Tag is properly emitting events."
         completed={steps?.[1]?.completed ?? false}
+        collapseButtonLabel={steps?.[1]?.collapseButtonLabel ?? ""}
       >
         <EventTable />
       </CollapsibleCard>
