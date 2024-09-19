@@ -18,7 +18,7 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="sidebar fixed left-0 top-0 w-64 h-screen overflow-y-auto">
+    <aside className="sidebar fixed left-0 top-0 w-64 h-screen overflow-y-auto flex flex-col">
       <div className="p-6 border-b border-gray-200">
         <h1 className="text-xl font-bold">
           surface <span className="px-2 p-1 text-white bg-blue-600 rounded-md">labs</span>
