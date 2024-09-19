@@ -42,6 +42,14 @@ export default function EventTable() {
     return <div className="text-center py-8 text-red-500">{error}</div>;
   }
 
+  if (events.length === 0) {
+    return (
+      <div className="text-center py-8 text-gray-500">
+        No events available. Please check back later!
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
       <div className="overflow-x-auto rounded-lg bg-white shadow-sm border border-gray-200">
@@ -86,8 +94,8 @@ export default function EventTable() {
         </button>
       </div>
       <ActionCard
-        title="Test Tag"
-        description="Ensure the Surface Tag is functioning correctly."
+        title=""
+        description=""
         actionText="Test Tag"
         actionVariant="secondary"
         onClick={() => fetchEvents(currentPage)}
