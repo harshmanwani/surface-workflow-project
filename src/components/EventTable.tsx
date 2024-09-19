@@ -93,13 +93,13 @@ export default function EventTable() {
           Next
         </button>
       </div>
-      <ActionCard
-        title=""
-        description=""
-        actionText="Test Tag"
-        actionVariant="secondary"
-        onClick={() => fetchEvents(currentPage)}
-      />
+      <div className="flex justify-end">
+        <ActionCard
+          actionText="Test Tag"
+          actionVariant="secondary"
+          onClick={() => fetchEvents(currentPage)}
+        />
+      </div>
     </div>
   );
 }
