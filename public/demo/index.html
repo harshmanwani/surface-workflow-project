@@ -57,11 +57,26 @@
             margin: 0 5px;
         }
     </style>
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'surface.start': new Date().getTime(),
+                event: 'surface.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'surface' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'http://localhost:3000/surface_analytics.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'surface', 'SURFACE_TAG_ID');
+    </script>
 </head>
 <body>
     <div class="hero">
-        <h1>Welcome to Our Company</h1>
-        <p>We're excited to hear from you!</p>
+        <h1 id="hero-title">Welcome to Our Company</h1>
+        <p id="hero-subtitle">We're excited to hear from you!</p>
     </div>
     <div class="content">
         <form action="" method="get">
@@ -73,19 +88,19 @@
             
             <label for="company-size">Company Size:</label>
             <select id="company-size" name="company-size" required>
-                <option value="">Select an option</option>
-                <option value="1-10">1-10 employees</option>
-                <option value="11-50">11-50 employees</option>
-                <option value="51-200">51-200 employees</option>
-                <option value="201+">201+ employees</option>
+                <option value="" id="company-size-select-none">Select an option</option>
+                <option value="1-10" id="company-size-1-10">1-10 employees</option>
+                <option value="11-50" id="company-size-11-50">11-50 employees</option>
+                <option value="51-200" id="company-size-51-200">51-200 employees</option>
+                <option value="201+" id="company-size-201+">201+ employees</option>
             </select>
             
-            <button type="submit">Submit</button>
+            <button type="submit" id="submit-btn">Submit</button>
         </form>
         
         <div class="additional-buttons">
-            <button>Follow Us</button>
-            <button>Log In</button>
+            <button id="follow-us-btn">Follow Us</button>
+            <button id="log-in-btn">Log In</button>
         </div>
     </div>
 </body>
