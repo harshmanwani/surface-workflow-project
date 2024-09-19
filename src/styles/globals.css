@@ -5,11 +5,18 @@
 @tailwind utilities;
 
 body {
-  @apply text-gray-900 font-pretendard;
+  @apply text-gray-900 font-pretendard bg-white;
 }
 
 @layer base {
   html {
     font-family: Pretendard, system-ui, sans-serif;
   }
+}
+
+.sidebar {
+  box-shadow: 0px 1.2px 3.99px 0px #00000007;
+  box-shadow: -3px 4.02px 10.3px -3px #00000015 inset;
+  border-radius: 0px 18px 18px 0px;
+  background: #F9F9F9;
 }

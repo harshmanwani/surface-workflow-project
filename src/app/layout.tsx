@@ -13,7 +13,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={GeistSans.variable}>
-      <body className="bg-gray-100">
+      <body className="">
         <div className="flex min-h-screen">
           <Sidebar />
           <main className="flex-1 p-8">{children}</main>

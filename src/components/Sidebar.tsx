@@ -18,7 +18,7 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-64 bg-white shadow-[2px_0_5px_rgba(0,0,0,0.1)] flex flex-col h-screen">
+    <aside className="sidebar w-64 bg-white shadow-[2px_0_5px_rgba(0,0,0,0.1)] flex flex-col h-screen">
       <div className="p-6 border-b border-gray-200">
         <h1 className="text-xl font-bold">
           surface <span className="px-2 p-1 text-white bg-blue-600 rounded-md">labs</span>
@@ -39,10 +39,10 @@ export default function Sidebar() {
             <li key={item.name}>
               <Link
                 href={item.href}
-                className={`flex items-center rounded-md px-3 py-2 text-sm ${
+                className={`flex items-center rounded-md px-3 py-1 text-xs ${
                   pathname === item.href
                     ? "bg-[#3E4149] text-white"
-                    : "text-gray-500 hover:bg-gray-100"
+                    : "hover:bg-gray-100 text-[#383F5080]"
                 }`}
               >
                 <span className="mr-3 text-lg">{item.icon}</span>
@@ -52,7 +52,7 @@ export default function Sidebar() {
           ))}
         </ul>
       </nav>
-      <div className="p-4 border-t border-gray-200">
+      <div className="p-4">
         <div className="flex items-center">
           <div className="h-10 w-10 rounded-full bg-pink-200 flex items-center justify-center text-pink-600 font-bold text-lg">
             CH

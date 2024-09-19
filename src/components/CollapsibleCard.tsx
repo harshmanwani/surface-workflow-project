@@ -30,8 +30,8 @@ export default function CollapsibleCard({
             </svg>}
           </div>
           <div>
-            <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
-            <p className="text-sm text-gray-500 mt-1">{description}</p>
+            <h3 className="text-md font-semibold text-gray-900">{title}</h3>
+            <p className="text-sm text-[#5F6065] mt-1">{description}</p>
           </div>
         </div>
         <span className={`transform transition-transform ${isOpen ? "rotate-180" : ""}`}>
