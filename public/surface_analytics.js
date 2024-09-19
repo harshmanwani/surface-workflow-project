@@ -1,3 +1,4 @@
+// @ts-nocheck
 (function (w, d) {
   function getVisitorId() {
     let visitorId = localStorage.getItem('surface_visitor_id');
