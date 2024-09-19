@@ -24,9 +24,23 @@ export async function POST(request: Request) {
 }
 
 export async function GET(request: Request) {
-  const events = await prisma.event.findMany({
-    orderBy: { createdAt: 'desc' },
-    take: 25,
+  const { searchParams } = new URL(request.url);
+  const page = parseInt(searchParams.get('page') || '1');
+  const limit = parseInt(searchParams.get('limit') || '10');
+  const skip = (page - 1) * limit;
+
+  const [events, total] = await Promise.all([
+    prisma.event.findMany({
+      orderBy: { createdAt: 'desc' },
+      take: limit,
+      skip: skip,
+    }),
+    prisma.event.count(),
+  ]);
+
+  return NextResponse.json({
+    events,
+    totalPages: Math.ceil(total / limit),
+    currentPage: page,
   });
-  return NextResponse.json(events);
 }
