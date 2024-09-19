@@ -3,6 +3,7 @@ interface ActionCardProps {
   description: string;
   actionText: string;
   actionVariant: "primary" | "secondary";
+  onClick?: () => any;
 }
 
 export default function ActionCard({
@@ -10,6 +11,7 @@ export default function ActionCard({
   description,
   actionText,
   actionVariant,
+  onClick = () => null,
 }: ActionCardProps) {
   return (
     <div className="flex items-center justify-between rounded-lg bg-white p-6 shadow-sm">
@@ -23,6 +25,7 @@ export default function ActionCard({
             ? "bg-blue-600 text-white hover:bg-blue-700"
             : "bg-gray-100 text-gray-700 hover:bg-gray-200"
         }`}
+        onClick={onClick}
       >
         {actionText}
       </button>
