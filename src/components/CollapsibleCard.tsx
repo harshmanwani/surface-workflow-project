@@ -33,7 +33,7 @@ export default function CollapsibleCard({
             </svg>}
           </div>
           <div>
-            <h3 className="text-md font-semibold text-gray-900">{title}</h3>
+            <h3 className="text-md font-medium text-gray-900">{title}</h3>
             <p className="text-sm text-[#5F6065] mt-1">{description}</p>
           </div>
         </div>
